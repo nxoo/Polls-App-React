@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
 
-let url = 'http://localhost:8000/polls/'
-
 function Polls() {
     let [polls, setPolls] = useState([])
+    let url = 'http://localhost:8000/polls/'
 
     useEffect(() => {
         fetch(url)
