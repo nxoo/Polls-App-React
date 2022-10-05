@@ -7,7 +7,7 @@ function App() {
     return (
         <>
             <Navbar/>
-            <div className="container">
+            <div className="container col-sm-9">
                 <Polls/>
             </div>
         </>
