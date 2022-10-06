@@ -54,16 +54,17 @@ export default function Results() {
                 </svg>
             </>
             :
-            <div>
+            <div className=" col-sm-6">
                 <h4 className="mb-3">{poll.poll}</h4>
-                <ul className="list-group list-group-flush w-sm-25">
+                <ul className="list-group list-group-flush">
                     {poll.choices.map(choice => (
                         <li key={choice.id}
-                            className="list-group-item d-flex justify-content-between align-items-start">
+                            className="list-group-item d-flex justify-content-between align-items-center">
+
                             {choice.choice}{' '}
-                            <span className="badge bg-secondary rounded-pill">
+                            <button className="btn btn-secondary btn-sm disabled">
                                 {pluralize(choice.votes)}
-                            </span>
+                            </button>
                         </li>
                     ))}
                 </ul>
