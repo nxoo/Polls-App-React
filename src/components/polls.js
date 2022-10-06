@@ -6,8 +6,8 @@ function Polls() {
     let navigate = useNavigate()
     let host = window.location.href
     let url;
-    if (host.includes('.app')) {
-        url = 'https://my-json-server.typicode.com/nxoo/Polls-App-React/polls'
+    if (host === 'https://polls-react-app.herokuapp.com') {
+        url = 'https://nxoo-json-server.herokuapp.com/polls'
     } else {
         url = 'http://localhost:8000/polls/'
     }
