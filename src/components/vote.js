@@ -12,6 +12,7 @@ export default function Vote() {
     const location = useLocation()
     const navigate = useNavigate()
     const [poll, setPoll] = useState()
+    const [error, setError] = useState()
     const [choiceId, setChoiceId] = useState()
     const [loading, setLoading] = useState(true)
     let pollId = location.state.pollId
@@ -29,6 +30,7 @@ export default function Vote() {
                 setPoll(data)
                 setLoading(false)
             })
+            .catch(error => setError(error))
     }, [])
 
     function handleSubmit(e) {
@@ -57,12 +59,15 @@ export default function Vote() {
 
     return (
         loading ?
-            <svg width="100%" height="100%">
-                <MyLoader/>
-            </svg>
+            <>
+                <h4>{error? 'Error fetching data' : 'Fetching poll data'}</h4>
+                <svg width="100%" height="100%">
+                    <MyLoader/>
+                </svg>
+            </>
             :
             <div>
-                <h2 className="mb-3">{poll.poll}</h2>
+                <h4 className="mb-3">{poll.poll}</h4>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     {poll.choices.map(choice => (
                         <div className="form-check" key={choice.id}>

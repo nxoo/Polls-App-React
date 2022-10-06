@@ -30,36 +30,47 @@ function Polls() {
 
     return (
         loading ?
-            <svg width="100%" height="100%">
-                <MyLoader/>
-            </svg>
+            <>
+                <h4>Fetching polls</h4>
+                <svg width="100%" height="100%">
+                    <MyLoader/>
+                </svg>
+            </>
             :
-            <div className="table-responsive">
-                <table className="table table-striped text-nowrap">
-                    <tbody>
-                    {polls.map(poll => (
-                        <tr className="py-5" key={poll.id}>
-                            <td>{poll.id}</td>
-                            <td className="fw-bold text-secondary">{poll.poll}</td>
-                            <td className="">
-                                <button
-                                    className="btn btn-success btn-sm text-white mx-2"
-                                    onClick={() => navigate('/vote', {
-                                        state: {pollId: poll.id}
-                                    })}>Vote
-                                </button>
-                                <button
-                                    className="btn btn-outline-secondary btn-sm mx-2"
-                                    onClick={() => navigate('/results', {
-                                        state: {pollId: poll.id}
-                                    })}>Results
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
-            </div>
+            <>
+                {polls.length === 0 ?
+                    <h4>No polls</h4> :
+                    <div>
+                        <h4 className="mb-3">Latest polls</h4>
+                        <div className="table-responsive">
+                            <table className="table table-striped text-nowrap">
+                                <tbody>
+                                {polls.map(poll => (
+                                    <tr className="py-5" key={poll.id}>
+                                        <td>{poll.id}</td>
+                                        <td className="fw-bold text-secondary">{poll.poll}</td>
+                                        <td className="">
+                                            <button
+                                                className="btn btn-success btn-sm text-white mx-2"
+                                                onClick={() => navigate('/vote', {
+                                                    state: {pollId: poll.id}
+                                                })}>Vote
+                                            </button>
+                                            <button
+                                                className="btn btn-outline-secondary btn-sm mx-2"
+                                                onClick={() => navigate('/results', {
+                                                    state: {pollId: poll.id}
+                                                })}>Results
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            </>
     )
 }
 

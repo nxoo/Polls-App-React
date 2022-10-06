@@ -17,6 +17,7 @@ export default function Results() {
     const location = useLocation()
     const navigate = useNavigate()
     const [poll, setPoll] = useState()
+    const [error, setError] = useState()
     const [loading, setLoading] = useState(true)
     let pollId = location.state.pollId
     let host = window.location.href
@@ -33,23 +34,31 @@ export default function Results() {
                 setPoll(data)
                 setLoading(false)
             })
+            .catch(error => setError(error))
     }, [])
 
     return (
         loading ?
-            <svg width="100%" height="100%">
-                <MyLoader/>
-            </svg>
+            <>
+                <h4>{error? 'Error fetching data' : 'Fetching poll data'}</h4>
+                <svg width="100%" height="100%">
+                    <MyLoader/>
+                </svg>
+            </>
             :
             <div>
-                <h2 className="mb-3">{poll.poll}</h2>
-                <ol type="a">
+                <h4 className="mb-3">{poll.poll}</h4>
+                <ul className="list-group list-group-flush w-25">
                     {poll.choices.map(choice => (
-                        <li key={choice.id}>
-                            {choice.choice} --- {pluralize(choice.votes)}
+                        <li key={choice.id}
+                            className="list-group-item d-flex justify-content-between align-items-start">
+                            {choice.choice}{' '}
+                            <span className="badge bg-secondary rounded-pill">
+                                {pluralize(choice.votes)}
+                            </span>
                         </li>
                     ))}
-                </ol>
+                </ul>
                 <div>
                     <button className="btn btn-link text-decoration-none mt-2 ps-0"
                             onClick={() => navigate("/vote", {
