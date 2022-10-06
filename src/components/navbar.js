@@ -31,8 +31,8 @@ function Navbar() {
                                     className="nav-link bg-light border-0"
                                     onClick={() => navigate("/newPoll")}
                                 >
-                                    <i className="bi bi-file-earmark-plus"></i>{' '}
-                                    Create Poll
+                                    <i className="bi bi-file-earmark-plus-fill"></i>{' '}
+                                    Create poll
                                 </button>
                             </li>
                         </ul>

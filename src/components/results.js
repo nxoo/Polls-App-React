@@ -22,8 +22,8 @@ export default function Results() {
     let host = window.location.href
     let url = 'https://nxoo-json-server.herokuapp.com/polls/' + pollId
     if (host.includes('localhost')) {
-        //url = 'http://localhost:8000/polls/' + pollId
-        url = 'https://nxoo-json-server.herokuapp.com/polls/' + pollId
+        url = 'http://localhost:8000/polls/' + pollId
+        //url = 'https://nxoo-json-server.herokuapp.com/polls/' + pollId
     }
 
     useEffect(() => {

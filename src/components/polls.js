@@ -15,8 +15,8 @@ function Polls() {
     let host = window.location.href
     let url = 'https://nxoo-json-server.herokuapp.com/polls'
     if (host.includes('localhost')) {
-        //url = 'http://localhost:8000/polls/'
-        url = 'https://nxoo-json-server.herokuapp.com/polls'
+        url = 'http://localhost:8000/polls/'
+        //url = 'https://nxoo-json-server.herokuapp.com/polls'
     }
 
     useEffect(() => {
