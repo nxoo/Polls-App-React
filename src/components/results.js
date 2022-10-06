@@ -56,7 +56,7 @@ export default function Results() {
             :
             <div>
                 <h4 className="mb-3">{poll.poll}</h4>
-                <ul className="list-group list-group-flush w-25">
+                <ul className="list-group list-group-flush w-sm-25">
                     {poll.choices.map(choice => (
                         <li key={choice.id}
                             className="list-group-item d-flex justify-content-between align-items-start">
