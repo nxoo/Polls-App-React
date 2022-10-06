@@ -54,10 +54,10 @@ function Polls() {
                         <h4 className="mb-3">Latest polls</h4>
                         <div className="table-responsive">
                             <table className="table table-striped text-nowrap">
-                                <tbody>
+                                <tbody className="">
                                 {polls.map(poll => (
                                     <tr className="py-5" key={poll.id}>
-                                        <td>{poll.id}</td>
+                                        <td className="px-sm-5">{poll.id}</td>
                                         <td className="fw-bold text-secondary">{poll.poll}</td>
                                         <td className="">
                                             <button
