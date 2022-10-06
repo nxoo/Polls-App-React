@@ -5,12 +5,11 @@ function Polls() {
     let [polls, setPolls] = useState([])
     let navigate = useNavigate()
     let host = window.location.href
-    let url;
-    if (host === 'https://polls-react-app.herokuapp.com') {
-        url = 'https://nxoo-json-server.herokuapp.com/polls'
-    } else {
+    let url = 'https://nxoo-json-server.herokuapp.com/polls'
+    if (host.includes('localhost')) {
         url = 'http://localhost:8000/polls/'
     }
+    console.log(url)
 
     useEffect(() => {
         fetch(url)
