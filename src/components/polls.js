@@ -4,13 +4,31 @@ import {useNavigate} from "react-router-dom";
 function Polls() {
     let [polls, setPolls] = useState([])
     let navigate = useNavigate()
-    let url = 'http://localhost:8000/polls/'
+    let host = window.location.href
+    let url;
+    if (host.includes('.app')) {
+        url = 'https://my-json-server.typicode.com/nxoo/Polls-App-React/polls'
+    } else {
+        url = 'http://localhost:8000/polls/'
+    }
 
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
             .then(data => setPolls(data))
     }, [])
+
+    if (polls.length === 0) {
+        return (
+            <div>
+                No polls!
+                <button
+                    className="btn btn-link text-decoration-none"
+                    onClick={() => navigate('/newPoll')}
+                >create one</button>
+            </div>
+        )
+    }
 
     return (
         <div className="table-responsive">
