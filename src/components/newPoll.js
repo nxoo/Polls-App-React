@@ -1,17 +1,19 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 export default function newPoll() {
     const [question, setQuestion] = useState('')
-    const [choices, setChoices] = useState([{value:''}, {value:''}])
+    const [choices, setChoices] = useState([{id: 1, choice: '', votes: 0}, {id: 2, choice: '', votes: 0}])
+    const navigate = useNavigate()
     let host = window.location.href
-    let url = 'https://nxoo-json-server.herokuapp.com/polls/'
+    let url = 'https://nxoo-json-server.herokuapp.com/polls'
     if (host.includes('localhost')) {
-        url = 'http://localhost:8000/polls/'
-        //url = 'https://nxoo-json-server.herokuapp.com/polls/'
+        url = 'http://localhost:8000/polls'
+        //url = 'https://nxoo-json-server.herokuapp.com/'
     }
 
     function handleChange(e, index) {
-        const updatedChoice = {...choices[index], value: e.target.value}
+        const updatedChoice = {...choices[index], choice: e.target.value}
         const updatedChoices = [
             ...choices.slice(0, index),
             updatedChoice,
@@ -23,7 +25,8 @@ export default function newPoll() {
 
     function addChoice(e) {
         e.preventDefault()
-        setChoices(choices => [...choices, {value:''}])
+        let id = choices.length+1
+        setChoices(choices => [...choices, {id: id, choice: '', votes: 0}])
     }
 
     function removeChoice(e, index) {
@@ -36,7 +39,22 @@ export default function newPoll() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(choices)
+        const data = {
+            poll: question,
+            choices: choices,
+            comments: [],
+        }
+        console.log(data)
+        fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        }).then(res => res.json())
+            .then(data => navigate('/vote', {
+                state: {
+                    pollId: data.id
+                }
+            }))
     }
 
     return (
@@ -60,7 +78,7 @@ export default function newPoll() {
                             className="form-control"
                             id={`${index}`}
                             placeholder={`choice ${index + 1}`}
-                            value={choice.value}
+                            value={choice.choice}
                             onChange={(e) => handleChange(e, index)}
                         />
                         {index < 2 ? null :

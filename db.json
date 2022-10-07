@@ -55,6 +55,45 @@
       ],
       "comments": [],
       "id": 3
+    },
+    {
+      "poll": "a or b",
+      "choices": [
+        {
+          "id": 1,
+          "choice": "a",
+          "votes": 2
+        },
+        {
+          "id": 2,
+          "choice": "b",
+          "votes": 1
+        }
+      ],
+      "comments": [],
+      "id": 4
+    },
+    {
+      "poll": "c, d or e",
+      "choices": [
+        {
+          "id": 1,
+          "choice": "c",
+          "votes": 0
+        },
+        {
+          "id": 2,
+          "choice": "d",
+          "votes": 1
+        },
+        {
+          "id": 4,
+          "choice": "f",
+          "votes": 3
+        }
+      ],
+      "comments": [],
+      "id": 5
     }
   ]
 }
