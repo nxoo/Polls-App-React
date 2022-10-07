@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 export default function newPoll() {
     const [question, setQuestion] = useState('')
-    const [choices, setChoices] = useState([{value: ''}, {value: ''}])
+    const [choices, setChoices] = useState([{value:''}, {value:''}])
     let host = window.location.href
     let url = 'https://nxoo-json-server.herokuapp.com/polls/'
     if (host.includes('localhost')) {
@@ -11,34 +11,45 @@ export default function newPoll() {
     }
 
     function handleChange(e, index) {
-        e.preventDefault()
-        let newState = choices
-        newState[index]['value'] = e.target.value
-        setChoices(newState)
+        const updatedChoice = {...choices[index], value: e.target.value}
+        const updatedChoices = [
+            ...choices.slice(0, index),
+            updatedChoice,
+            ...choices.slice(index + 1)
+        ]
+        setChoices(updatedChoices)
         console.log(url, question, index, choices)
     }
 
     function addChoice(e) {
         e.preventDefault()
-        setChoices(choices => [...choices, {value: ''}])
+        setChoices(choices => [...choices, {value:''}])
     }
 
-    function removeChoice(e, i) {
+    function removeChoice(e, index) {
         e.preventDefault()
-        const newState = choices.filter((x, index) => index !== i);
+        //const newState = choices.filter((x, index) => index !== i);
+        let newState = [...choices]
+        newState.splice(index, 1)
         setChoices(newState)
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        console.log(choices)
     }
 
     return (
         <div className="col-sm-6">
-            <h4 className="mb-3">Add a new poll</h4>
-            <form>
+            <h4 className="mb-3">Create a new poll</h4>
+            <form onSubmit={handleSubmit}>
                 <div className="mb-2">
                     <input
                         type="text"
                         className="form-control"
                         id="question"
                         placeholder="Question"
+                        value={question}
                         onChange={(e) => setQuestion(e.target.value)}
                     />
                 </div>
@@ -47,19 +58,20 @@ export default function newPoll() {
                         <input
                             type="text"
                             className="form-control"
-                            id={`${index + 1}`}
+                            id={`${index}`}
                             placeholder={`choice ${index + 1}`}
+                            value={choice.value}
                             onChange={(e) => handleChange(e, index)}
                         />
                         {index < 2 ? null :
                             <button className="btn btn-outline-secondary" type="button" id="button-addon2"
                                     onClick={(e) => removeChoice(e, index)}
-                            >X</button>}
+                            >x</button>}
                     </div>
                 ))}
-                <div className="mb-3">
+                <div className="mb-2">
                     <button className="btn btn-link text-decoration-none ps-0"
-                            onClick={(e) => addChoice(e)}>Add choice
+                            onClick={(e) => addChoice(e)}><i className="bi bi-file-plus"/> Add choice
                     </button>
                 </div>
                 <button type="submit" className="btn btn-success">Submit</button>
