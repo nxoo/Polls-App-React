@@ -20,7 +20,6 @@ export default function newPoll() {
             ...choices.slice(index + 1)
         ]
         setChoices(updatedChoices)
-        console.log(url, question, index, choices)
     }
 
     function addChoice(e) {
@@ -31,7 +30,6 @@ export default function newPoll() {
 
     function removeChoice(e, index) {
         e.preventDefault()
-        //const newState = choices.filter((x, index) => index !== i);
         let newState = [...choices]
         newState.splice(index, 1)
         setChoices(newState)
@@ -44,7 +42,6 @@ export default function newPoll() {
             choices: choices,
             comments: [],
         }
-        console.log(data)
         fetch(url, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -69,6 +66,7 @@ export default function newPoll() {
                         placeholder="Question"
                         value={question}
                         onChange={(e) => setQuestion(e.target.value)}
+                        required
                     />
                 </div>
                 {choices.map((choice, index) => (
@@ -80,6 +78,7 @@ export default function newPoll() {
                             placeholder={`choice ${index + 1}`}
                             value={choice.choice}
                             onChange={(e) => handleChange(e, index)}
+                            required
                         />
                         {index < 2 ? null :
                             <button className="btn btn-outline-secondary" type="button" id="button-addon2"

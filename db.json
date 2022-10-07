@@ -62,7 +62,7 @@
         {
           "id": 1,
           "choice": "a",
-          "votes": 2
+          "votes": 3
         },
         {
           "id": 2,
@@ -94,6 +94,28 @@
       ],
       "comments": [],
       "id": 5
+    },
+    {
+      "poll": "Ac Milan vs Inter Milan",
+      "choices": [
+        {
+          "id": 1,
+          "choice": "a",
+          "votes": 0
+        },
+        {
+          "id": 2,
+          "choice": "b",
+          "votes": 0
+        },
+        {
+          "id": 4,
+          "choice": "dd",
+          "votes": 1
+        }
+      ],
+      "comments": [],
+      "id": 6
     }
   ]
 }
