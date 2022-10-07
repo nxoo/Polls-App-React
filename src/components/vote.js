@@ -55,7 +55,8 @@ export default function Vote() {
         }).then(res => res.json())
             .then(data => navigate('/results', {
                 state: {
-                    pollId: data.id
+                    pollId: data.id,
+                    choice: data['choices'].filter(choice => parseInt(choiceId) === choice.id)
                 }
             }))
     }

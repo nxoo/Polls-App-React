@@ -40,17 +40,17 @@
         {
           "id": 1,
           "choice": "Man Blues",
-          "votes": 3
+          "votes": 4
         },
         {
           "id": 2,
           "choice": "Man C",
-          "votes": 3
+          "votes": 15
         },
         {
           "id": 3,
           "choice": "Tottenham",
-          "votes": 3
+          "votes": 6
         }
       ],
       "comments": [],
@@ -62,7 +62,7 @@
         {
           "id": 1,
           "choice": "a",
-          "votes": 3
+          "votes": 4
         },
         {
           "id": 2,
@@ -89,7 +89,7 @@
         {
           "id": 4,
           "choice": "f",
-          "votes": 3
+          "votes": 5
         }
       ],
       "comments": [],
@@ -101,7 +101,7 @@
         {
           "id": 1,
           "choice": "a",
-          "votes": 0
+          "votes": 4
         },
         {
           "id": 2,
@@ -123,7 +123,7 @@
         {
           "id": 1,
           "choice": "one",
-          "votes": 3
+          "votes": 6
         },
         {
           "id": 2,
@@ -133,7 +133,7 @@
         {
           "id": 3,
           "choice": "three",
-          "votes": 2
+          "votes": 5
         }
       ],
       "comments": [],
@@ -150,7 +150,7 @@
         {
           "id": 2,
           "choice": "four",
-          "votes": 0
+          "votes": 1
         }
       ],
       "comments": [],

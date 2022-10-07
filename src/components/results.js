@@ -20,6 +20,8 @@ export default function Results() {
     const [poll, setPoll] = useState()
     const [error, setError] = useState()
     const [loading, setLoading] = useState(true)
+    const [success, setSuccess] = useState(false)
+    const [choice, setChoice] = useState()
 
     useEffect(() => {
         if (location.state === null) {
@@ -28,6 +30,10 @@ export default function Results() {
         } else {
             let host = window.location.href
             pollId = location.state.pollId
+            if (location.state.choice) {
+                setChoice(location.state.choice[0])
+                setSuccess(true)
+            }
             url = 'https://nxoo-json-server.herokuapp.com/polls/' + pollId
             if (host.includes('localhost')) {
                 url = 'http://localhost:8000/polls/' + pollId
@@ -51,6 +57,14 @@ export default function Results() {
         )
     }
 
+    function successMessage(choice) {
+        return (
+            <div className="alert alert-success" role="alert">
+                You voted for <b>{choice}</b>
+            </div>
+        )
+    }
+
     return (
         loading ?
             <>
@@ -61,6 +75,7 @@ export default function Results() {
             </>
             :
             <div className=" col-sm-6">
+                {success? successMessage(choice['choice']):null}
                 <h4 className="mb-3">{poll.poll}</h4>
                 <ul className="list-group list-group-flush">
                     {poll.choices.map(choice => (
