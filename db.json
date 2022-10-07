@@ -7,12 +7,12 @@
         {
           "id": 1,
           "choice": "Man United",
-          "votes": 0
+          "votes": 2
         },
         {
           "id": 2,
           "choice": "Arsenal",
-          "votes": 1
+          "votes": 2
         }
       ],
       "comments": []
@@ -23,12 +23,12 @@
         {
           "id": 1,
           "choice": "Real Madrid",
-          "votes": 2
+          "votes": 3
         },
         {
           "id": 2,
           "choice": "FC Barcelona",
-          "votes": 1
+          "votes": 2
         }
       ],
       "comments": [],
