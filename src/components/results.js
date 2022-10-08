@@ -37,10 +37,18 @@ export default function Results() {
             .catch(error => setError(error))
     }, [])
 
+    if (error) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                Error fetching poll
+            </div>
+        )
+    }
+
     return (
         loading ?
             <>
-                <h4>{error? 'Error fetching data' : 'Fetching poll data'}</h4>
+                <h4>Fetching poll data</h4>
                 <svg width="100%" height="100%">
                     <MyLoader/>
                 </svg>

@@ -11,6 +11,7 @@ const MyLoader = () => (
 function Polls() {
     let [polls, setPolls] = useState([])
     let [loading, setLoading] = useState(true)
+    let [error, setError] = useState()
     let navigate = useNavigate()
     let host = window.location.href
     let url = 'https://nxoo-json-server.herokuapp.com/polls'
@@ -26,7 +27,16 @@ function Polls() {
                 setPolls(data)
                 setLoading(false)
             })
+            .catch(error => setError(error))
     }, [])
+
+    if (error) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                Error fetching polls
+            </div>
+        )
+    }
 
     return (
         loading ?
