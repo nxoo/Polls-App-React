@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import ContentLoader from "react-content-loader";
+let pollId, url;
 
 const MyLoader = () => (
     <ContentLoader>
@@ -15,15 +16,20 @@ export default function Vote() {
     const [error, setError] = useState()
     const [choiceId, setChoiceId] = useState()
     const [loading, setLoading] = useState(true)
-    let pollId = location.state.pollId
-    let host = window.location.href
-    let url = 'https://nxoo-json-server.herokuapp.com/polls/' + pollId
-    if (host.includes('localhost')) {
-        url = 'http://localhost:8000/polls/' + pollId
-        //url = 'https://nxoo-json-server.herokuapp.com/polls/' + pollId
-    }
 
     useEffect(() => {
+        if (location.state === null) {
+            navigate("/")
+            return
+        } else {
+            let host = window.location.href
+            pollId = location.state.pollId
+            url = 'https://nxoo-json-server.herokuapp.com/polls/' + pollId
+            if (host.includes('localhost')) {
+                url = 'http://localhost:8000/polls/' + pollId
+            }
+        }
+
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -35,7 +41,6 @@ export default function Vote() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log('a', poll)
         const newChoice = poll['choices'].map(choice => {
             if (parseInt(choiceId) === choice.id) {
                 return {...choice, votes: choice.votes + 1}
@@ -43,9 +48,7 @@ export default function Vote() {
             return choice
         })
         let newState = {...poll, choices: newChoice}
-        console.log('b', poll)
-        console.log(newState)
-        fetch(url,{
+        fetch(url, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newState)
@@ -81,7 +84,7 @@ export default function Vote() {
                         <div className="form-check" key={choice.id}>
                             <input className="form-check-input" type="radio" name="choice1"
                                    onChange={e => setChoiceId(e.target.id)}
-                                   id={choice.id} required />
+                                   id={choice.id} required/>
                             <label className="form-check-label" htmlFor={choice.id}>
                                 {choice.choice}
                             </label>

@@ -75,7 +75,7 @@ export default function newPoll() {
                             type="text"
                             className="form-control"
                             id={`${index}`}
-                            placeholder={`choice ${index + 1}`}
+                            placeholder={`Choice ${index + 1}`}
                             value={choice.choice}
                             onChange={(e) => handleChange(e, index)}
                             required

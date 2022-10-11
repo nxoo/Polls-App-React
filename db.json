@@ -7,7 +7,7 @@
         {
           "id": 1,
           "choice": "Man United",
-          "votes": 2
+          "votes": 3
         },
         {
           "id": 2,
@@ -106,7 +106,7 @@
         {
           "id": 2,
           "choice": "b",
-          "votes": 0
+          "votes": 3
         },
         {
           "id": 4,
@@ -116,6 +116,45 @@
       ],
       "comments": [],
       "id": 6
+    },
+    {
+      "poll": "one or two",
+      "choices": [
+        {
+          "id": 1,
+          "choice": "one",
+          "votes": 3
+        },
+        {
+          "id": 2,
+          "choice": "two",
+          "votes": 1
+        },
+        {
+          "id": 3,
+          "choice": "three",
+          "votes": 2
+        }
+      ],
+      "comments": [],
+      "id": 7
+    },
+    {
+      "poll": "Three or Four",
+      "choices": [
+        {
+          "id": 1,
+          "choice": "three",
+          "votes": 1
+        },
+        {
+          "id": 2,
+          "choice": "four",
+          "votes": 0
+        }
+      ],
+      "comments": [],
+      "id": 8
     }
   ]
 }

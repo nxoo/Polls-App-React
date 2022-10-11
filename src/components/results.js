@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import ContentLoader from "react-content-loader";
+let pollId, url;
 
 const MyLoader = () => (
     <ContentLoader>
@@ -19,15 +20,20 @@ export default function Results() {
     const [poll, setPoll] = useState()
     const [error, setError] = useState()
     const [loading, setLoading] = useState(true)
-    let pollId = location.state.pollId
-    let host = window.location.href
-    let url = 'https://nxoo-json-server.herokuapp.com/polls/' + pollId
-    if (host.includes('localhost')) {
-        url = 'http://localhost:8000/polls/' + pollId
-        //url = 'https://nxoo-json-server.herokuapp.com/polls/' + pollId
-    }
 
     useEffect(() => {
+        if (location.state === null) {
+            navigate('/')
+            return
+        } else {
+            let host = window.location.href
+            pollId = location.state.pollId
+            url = 'https://nxoo-json-server.herokuapp.com/polls/' + pollId
+            if (host.includes('localhost')) {
+                url = 'http://localhost:8000/polls/' + pollId
+            }
+        }
+
         fetch(url)
             .then(res => res.json())
             .then(data => {

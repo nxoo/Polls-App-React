@@ -16,6 +16,7 @@ export default function App() {
                     <Route path='/newPoll' element={<NewPoll />}/>
                     <Route path='/vote' element={<Vote/>}/>
                     <Route path='/results' element={<Results/>}/>
+                    <Route path='*' element={<Polls/>}/> {/* catch 404 urls */}
                 </Route>
             </Routes>
         </Router>
